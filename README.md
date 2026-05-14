@@ -4,7 +4,7 @@
 
 ![Twilight Logo](frontend/images/logo.png)
 
-**A Complete E-Commerce Platform for Handmade Women's Products**
+**An E-Commerce Platform for Handmade crochet Products**
 
 Built with HTML, Tailwind CSS, JavaScript, Bash, and SQLite
 
