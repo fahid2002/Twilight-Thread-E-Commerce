@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All Products - Twilight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-gem text-purple-600 text-3xl mr-3"></i>
+                        <span class="text-3xl font-bold text-gray-800">Twilight</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Home</a>
+                    <a href="products.html" class="text-purple-600 font-medium">Shop</a>
+                    <a href="index.html#categories" class="text-gray-700 hover:text-purple-600 font-medium transition">Categories</a>
+                    <a href="index.html#about" class="text-gray-700 hover:text-purple-600 font-medium transition">About</a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-purple-600 font-medium transition">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="cart.html" class="relative text-gray-700 hover:text-purple-600 transition">
+                        <i class="fas fa-shopping-cart text-2xl"></i>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">0</span>
+                    </a>
+                    <div id="userNav">
+                        <a href="login.html" class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition font-medium">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="bg-gradient-to-r from-purple-600 to-pink-600 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Handmade Collection</h1>
+            <p class="text-xl text-purple-100">Discover unique treasures crafted with love</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <aside class="lg:w-64 space-y-6">
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Search</h3>
+                    <input type="text" id="searchInput" placeholder="Search products..." 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Categories</h3>
+                    <div class="space-y-2">
+                        <button onclick="filterByCategory('')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition font-medium text-gray-700">
+                            All Products
+                        </button>
+                        <button onclick="filterByCategory('Key Ring')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition text-gray-600">
+                            Key Ring
+                        </button>
+                        <button onclick="filterByCategory('Flower')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition text-gray-600">
+                            Flower
+                        </button>
+                        <button onclick="filterByCategory('Bags')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition text-gray-600">
+                            Bags
+                        </button>
+                        <button onclick="filterByCategory('Neck Design')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition text-gray-600">
+                            Neck Design
+                        </button>
+                        <button onclick="filterByCategory('Doormat')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition text-gray-600">
+                            Doormat
+                        </button>
+                        <button onclick="filterByCategory('Name Design')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition text-gray-600">
+                            Name Design
+                        </button>
+                        <button onclick="filterByCategory('Home & Kitchen')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition text-gray-600">
+                            Home & Kitchen
+                        </button>
+                        <button onclick="filterByCategory('Stationery')" 
+                                class="category-filter w-full text-left px-4 py-2 rounded-lg hover:bg-purple-50 transition text-gray-600">
+                            Stationery
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Price Range</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="all" checked class="mr-2">
+                            <span class="text-gray-600">All Prices</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="0-30" class="mr-2">
+                            <span class="text-gray-600">Under $30</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="30-60" class="mr-2">
+                            <span class="text-gray-600">$30 - $60</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="60-100" class="mr-2">
+                            <span class="text-gray-600">$60 - $100</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="100-999" class="mr-2">
+                            <span class="text-gray-600">Over $100</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Products Grid -->
+            <main class="flex-1">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <p id="productCount" class="text-gray-600 text-lg">Loading products...</p>
+                    </div>
+                    <select id="sortSelect" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                </div>
+
+                <div id="productsGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <!-- Products will be loaded here -->
+                </div>
+
+                <div id="noProducts" class="hidden text-center py-20">
+                    <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">No products found</h3>
+                    <p class="text-gray-600">Try adjusting your filters or search terms</p>
+                </div>
+
+                <div id="loading" class="text-center py-20">
+                    <i class="fas fa-spinner fa-spin text-6xl text-purple-600"></i>
+                    <p class="text-gray-600 mt-4 text-lg">Loading amazing products...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center mb-4">
+                <i class="fas fa-gem text-purple-400 text-2xl mr-2"></i>
+                <span class="text-xl font-bold">Twilight</span>
+            </div>
+            <p class="text-gray-400">&copy; 2024 Twilight. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        let allProducts = [];
+        let currentCategory = '';
+        let currentSearch = '';
+        let currentPriceRange = 'all';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for category in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryParam = urlParams.get('category');
+            if (categoryParam) {
+                currentCategory = categoryParam;
+            }
+            
+            loadProducts();
+            
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                currentSearch = e.target.value.toLowerCase();
+                filterProducts();
+            });
+            
+            // Price filter
+            document.querySelectorAll('input[name="price"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    currentPriceRange = this.value;
+                    filterProducts();
+                });
+            });
+            
+            // Sort functionality
+            document.getElementById('sortSelect').addEventListener('change', function() {
+                sortProducts(this.value);
+            });
+        });
+
+        async function loadProducts() {
+            try {
+                const response = await fetch('/cgi-bin/api.sh?action=show_products');
+                const data = await response.json();
+                
+                document.getElementById('loading').classList.add('hidden');
+                
+                if (data.success && data.products.length > 0) {
+                    allProducts = data.products;
+                    filterProducts();
+                } else {
+                    showNoProducts();
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('loading').classList.add('hidden');
+                showNoProducts();
+            }
+        }
+
+        function filterByCategory(category) {
+            currentCategory = category;
+            filterProducts();
+            
+            // Update active state
+            document.querySelectorAll('.category-filter').forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('text-gray-600');
+            });
+            event.target.classList.add('bg-purple-600', 'text-white');
+            event.target.classList.remove('text-gray-600');
+        }
+
+        function filterProducts() {
+            let filtered = allProducts;
+            
+            // Filter by category
+            if (currentCategory) {
+                filtered = filtered.filter(p => p.category === currentCategory);
+            }
+            
+            // Filter by search
+            if (currentSearch) {
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(currentSearch) || 
+                    p.description.toLowerCase().includes(currentSearch)
+                );
+            }
+            
+            // Filter by price
+            if (currentPriceRange !== 'all') {
+                const [min, max] = currentPriceRange.split('-').map(Number);
+                filtered = filtered.filter(p => p.price >= min && p.price <= max);
+            }
+            
+            displayProducts(filtered);
+        }
+
+        function sortProducts(sortBy) {
+            let sorted = [...allProducts];
+            
+            switch(sortBy) {
+                case 'price-low':
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    sorted.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'newest':
+                default:
+                    sorted.sort((a, b) => b.id - a.id);
+            }
+            
+            allProducts = sorted;
+            filterProducts();
+        }
+
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            const noProducts = document.getElementById('noProducts');
+            const countEl = document.getElementById('productCount');
+            
+            if (products.length === 0) {
+                grid.innerHTML = '';
+                noProducts.classList.remove('hidden');
+                countEl.textContent = 'No products found';
+                return;
+            }
+            
+            noProducts.classList.add('hidden');
+            countEl.textContent = `Showing ${products.length} product${products.length !== 1 ? 's' : ''}`;
+            
+            grid.innerHTML = products.map(product => `
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="images/${product.image}" alt="${product.name}" 
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=350&fit=crop'">
+                        ${product.stock < 5 && product.stock > 0 ? 
+                            '<span class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Only ' + product.stock + ' left!</span>' : 
+                            product.stock === 0 ? 
+                            '<span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Out of Stock</span>' : 
+                            ''}
+                        ${product.category ? '<span class="absolute top-4 left-4 bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">' + product.category + '</span>' : ''}
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-4 h-12 overflow-hidden">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-purple-600">$${product.price.toFixed(2)}</span>
+                            <a href="product-detail.html?id=${product.id}" 
+                               class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition font-medium">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showNoProducts() {
+            document.getElementById('productsGrid').innerHTML = '';
+            document.getElementById('noProducts').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

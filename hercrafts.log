@@ -1,0 +1,71 @@
+[2025-11-23 01:48:22] Failed login attempt for username: username
+[2025-11-23 01:49:16] New user registered: fahid (ID: 2, Role: customer)
+[2025-11-23 01:52:14] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 01:52:45] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 01:54:46] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 01:55:00] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 01:58:12] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 01:58:17] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 02:00:03] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 02:00:55] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 02:02:30] User logged out with token: C69cHpULUk...
+[2025-11-23 02:03:04] Failed login attempt for username: fahid
+[2025-11-23 02:03:15] Failed login attempt for username: fahid
+[2025-11-23 02:03:24] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 02:04:47] New user registered: siam (ID: 4, Role: customer)
+[2025-11-23 02:05:32] User logged out with token: JQARDufUXh...
+[2025-11-23 02:05:38] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 02:42:12] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 23:23:20] New user registered: fahid123 (ID: 5, Role: customer)
+[2025-11-23 23:25:12] User logged out with token: RA3RAOoV6q...
+[2025-11-23 23:25:16] User logged in: fahid123 (ID: 5, Role: customer)
+[2025-11-23 23:25:20] User logged out with token: bLqEmk2G3i...
+[2025-11-23 23:25:34] User logged in: admin (ID: 1, Role: admin)
+[2025-11-23 23:26:23] Product added by admin: jfsadhfjl (ID: 0)
+[2025-11-23 23:26:24] Product added by admin: jfsadhfjl (ID: 0)
+[2025-11-23 ２３:２７:４３] Product deleted by admin: ID ２６
+[２０２５－１１－２４ ００：１４：３１] Product deleted by admin: ID ２５
+[２０２５－１１－２４ ００：１５：３５] Product added by admin: rw (ID: ０)
+[２０２５－１１－２４ ００：１７：３９] Product added by admin: wrwr (ID: ０)
+[2025-11-24 00:20:15] Product added by admin: fsfs (ID: 0)
+[2025-11-24 14:08:13] User logged out with token: so7dGXabg3...
+[2025-11-24 14:09:00] New user registered: f20 (ID: 6, Role: customer)
+[2025-11-24 14:14:50] User logged out with token: GDR3Z6KDZp...
+[2025-11-24 14:15:05] Failed login attempt for username: admin
+[2025-11-24 14:15:16] User logged in: admin (ID: 1, Role: admin)
+[2025-11-24 14:17:08] Product added by admin: rwerwer (ID: 0)
+[2025-11-24 14:17:10] Product added by admin: rwerwer (ID: 0)
+[2025-11-24 14:17:17] Product deleted by admin: ID 31
+[2025-12-08 14:55:55] User logged in: admin (ID: 1, Role: admin)
+[2025-12-08 15:25:40] User 1 added product 28 to cart (qty: 1)
+[2025-12-08 15:25:41] User 1 added product 28 to cart (qty: 1)
+[2025-12-08 15:31:52] User logged out with token: Ph8e0o9bEI...
+[2025-12-10 21:13:39] User logged in: admin (ID: 1, Role: admin)
+[2025-12-10 21:13:40] User logged in: admin (ID: 1, Role: admin)
+[2025-12-10 21:32:36] New user registered: rahim771 (ID: 7, Role: customer)
+[2025-12-10 21:33:29] User 7 added product 20 to cart (qty: 1)
+[2025-12-10 21:35:49] User logged out with token: vm0ae7ands...
+[2025-12-10 21:36:06] User logged in: admin (ID: 1, Role: admin)
+[2025-12-10 21:36:08] User logged in: admin (ID: 1, Role: admin)
+[2025-12-10 21:37:59] Product added by admin: ehfasdufhs (ID: 0)
+[2025-12-10 21:39:15] Product updated by admin: ID 32
+[2025-12-10 21:39:18] Product updated by admin: ID 32
+[2025-12-10 21:40:26] Product added by admin: mashket (ID: 0)
+[2025-12-10 21:40:29] Product added by admin: mashket (ID: 0)
+[2025-12-10 21:41:10] Product deleted by admin: ID 34
+[2025-12-10 21:41:19] Product deleted by admin: ID 33
+[2025-12-10 21:55:42] User logged out with token: 6QaUB3GAUQ...
+[2025-12-10 21:56:21] New user registered: fahid123 (ID: 8, Role: customer)
+[2025-12-10 21:56:41] User logged out with token: Gppjte40me...
+[2025-12-10 21:56:53] User logged in: fahid123 (ID: 8, Role: customer)
+[2025-12-10 22:08:55] User logged out with token: 5tQEO0ZBIH...
+[2025-12-10 22:08:59] User logged in: admin (ID: 1, Role: admin)
+[2025-12-10 22:39:05] Product deleted by admin: ID 29
+[2025-12-14 10:27:37] User logged in: fahid123 (ID: 5, Role: customer)
+[2025-12-14 10:27:40] User logged in: fahid123 (ID: 5, Role: customer)
+[2025-12-14 10:35:27] User 5 added product 28 to cart (qty: 1)
+[2025-12-14 10:35:30] User 5 added product 28 to cart (qty: 1)
+[2025-12-14 10:38:26] User 5 added product 30 to cart (qty: 1)
+[2025-12-14 10:46:42] User 5 added product 28 to cart (qty: 1)
+[2025-12-14 10:46:45] User 5 added product 28 to cart (qty: 1)
+[2025-12-14 10:46:58] User 5 updated cart item 30 (qty: 2)

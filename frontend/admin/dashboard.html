@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Twilight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="../index.html" class="flex items-center">
+                    <i class="fas fa-gem text-purple-600 text-3xl mr-3"></i>
+                    <span class="text-3xl font-bold text-gray-800">Twilight Admin</span>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="text-gray-700 hover:text-purple-600">View Site</a>
+                    <button onclick="logout()" class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">Admin Dashboard</h1>
+
+        <!-- Stats Cards -->
+        <div class="grid md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total Products</p>
+                        <p id="totalProducts" class="text-3xl font-bold text-purple-600">0</p>
+                    </div>
+                    <i class="fas fa-box text-4xl text-purple-200"></i>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total Orders</p>
+                        <p id="totalOrders" class="text-3xl font-bold text-green-600">0</p>
+                    </div>
+                    <i class="fas fa-shopping-cart text-4xl text-green-200"></i>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total Customers</p>
+                        <p id="totalCustomers" class="text-3xl font-bold text-blue-600">0</p>
+                    </div>
+                    <i class="fas fa-users text-4xl text-blue-200"></i>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Revenue</p>
+                        <p id="totalRevenue" class="text-3xl font-bold text-orange-600">$0</p>
+                    </div>
+                    <i class="fas fa-dollar-sign text-4xl text-orange-200"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="border-b border-gray-200">
+                <nav class="flex">
+                    <button onclick="switchTab('products')" id="tabProducts" 
+                            class="tab-button px-8 py-4 font-semibold text-purple-600 border-b-2 border-purple-600">
+                        Products
+                    </button>
+                    <button onclick="switchTab('orders')" id="tabOrders" 
+                            class="tab-button px-8 py-4 font-semibold text-gray-600 hover:text-purple-600">
+                        Orders
+                    </button>
+                    <button onclick="switchTab('customers')" id="tabCustomers" 
+                            class="tab-button px-8 py-4 font-semibold text-gray-600 hover:text-purple-600">
+                        Customers
+                    </button>
+                </nav>
+            </div>
+
+            <div class="p-6">
+                <!-- Products Tab -->
+                <div id="productsTab" class="tab-content">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Manage Products</h2>
+                        <button onclick="showAddProductModal()" 
+                                class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition font-semibold">
+                            <i class="fas fa-plus mr-2"></i> Add Product
+                        </button>
+                    </div>
+                    <div id="productsList" class="overflow-x-auto">
+                        <!-- Products table will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Orders Tab -->
+                <div id="ordersTab" class="tab-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">All Orders</h2>
+                    <div id="ordersList" class="overflow-x-auto">
+                        <!-- Orders table will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Customers Tab -->
+                <div id="customersTab" class="tab-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">All Customers</h2>
+                    <div id="customersList" class="overflow-x-auto">
+                        <!-- Customers table will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="hidden fixed inset-0 bg-black bg-opacity-5flex items-center justify-center z-50">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-2xl w-full mx-4 max-h-screen overflow-y-auto">
+            <h2 id="modalTitle" class="text-3xl font-bold text-gray-800 mb-6">Add New Product</h2>
+            <form id="productForm" class="space-y-4">
+                <input type="hidden" id="productId">
+                
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Product Name</label>
+                    <input type="text" id="productName" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Description</label>
+                    <textarea id="productDescription" required rows="3"
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Price ($)</label>
+                        <input type="number" id="productPrice" step="0.01" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Stock</label>
+                        <input type="number" id="productStock" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Category</label>
+                    <select id="productCategory" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <option value="">Select Category</option>
+                        <option value="Key Ring">Key Ring</option>
+                        <option value="Flower">Flower</option>
+                        <option value="Bags">Bags</option>
+                        <option value="Neck Design">Neck Design</option>
+                        <option value="Doormat">Doormat</option>
+                        <option value="Name Design">Name Design</option>
+                        <option value="Home & Kitchen">Home & Kitchen</option>
+                        <option value="Stationery">Stationery</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Product Image</label>
+                    <input type="file" id="productImageFile" accept="image/*"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <input type="hidden" id="productImage">
+                    <div id="imagePreview" class="mt-3 hidden">
+                        <img id="previewImg" src="" alt="Preview" class="h-32 w-32 object-cover rounded-lg border-2 border-purple-200">
+                    </div>
+                </div>
+                
+                <div class="flex space-x-4 pt-4">
+                    <button type="submit" 
+                            class="flex-1 bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                        Save Product
+                    </button>
+                    <button type="button" onclick="closeProductModal()" 
+                            class="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Check admin access
+        if (!isAdmin()) {
+            window.location.href = '../index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardStats();
+            loadProducts();
+            
+            // Handle image file selection
+            document.getElementById('productImageFile').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('previewImg').src = e.target.result;
+                        document.getElementById('imagePreview').classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                    
+                    // Store filename
+                    document.getElementById('productImage').value = file.name;
+                }
+            });
+        });
+
+        function switchTab(tab) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.querySelectorAll('.tab-button').forEach(b => {
+                b.classList.remove('text-purple-600', 'border-b-2', 'border-purple-600');
+                b.classList.add('text-gray-600');
+            });
+            
+            // Show selected tab
+            document.getElementById(tab + 'Tab').classList.remove('hidden');
+            document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('text-purple-600', 'border-b-2', 'border-purple-600');
+            
+            // Load data for the tab
+            if (tab === 'products') loadProducts();
+            else if (tab === 'orders') loadOrders();
+            else if (tab === 'customers') loadCustomers();
+        }
+
+        async function loadDashboardStats() {
+            const token = localStorage.getItem('token');
+            
+            try {
+                const [productsRes, ordersRes] = await Promise.all([
+                    fetch('/cgi-bin/api.sh?action=show_products'),
+                    fetch(`/cgi-bin/api.sh?action=orders&token=${token}`)
+                ]);
+                
+                const productsData = await productsRes.json();
+                const ordersData = await ordersRes.json();
+                
+                if (productsData.success) {
+                    document.getElementById('totalProducts').textContent = productsData.products.length;
+                }
+                
+                if (ordersData.success && ordersData.orders) {
+                    document.getElementById('totalOrders').textContent = ordersData.orders.length;
+                    const revenue = ordersData.orders.reduce((sum, order) => sum + (order.total_price || 0), 0);
+                    document.getElementById('totalRevenue').textContent = '$' + revenue.toFixed(2);
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        async function loadProducts() {
+            try {
+                const response = await fetch('/cgi-bin/api.sh?action=show_products');
+                const data = await response.json();
+                
+                if (data.success && data.products.length > 0) {
+                    displayProducts(data.products);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function displayProducts(products) {
+            const container = document.getElementById('productsList');
+            container.innerHTML = `
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        ${products.map(p => `
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${p.id}</td>
+                                <td class="px-6 py-4 text-sm text-gray-900">${p.name}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${p.category || '-'}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-purple-600">$${p.price.toFixed(2)}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm ${p.stock < 5 ? 'text-red-600 font-semibold' : 'text-gray-600'}">${p.stock}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                    <button onclick='editProduct(${JSON.stringify(p)})' class="text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="deleteProduct(${p.id})" class="text-red-600 hover:text-red-800">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function showAddProductModal() {
+            document.getElementById('modalTitle').textContent = 'Add New Product';
+            document.getElementById('productForm').reset();
+            document.getElementById('productId').value = '';
+            document.getElementById('imagePreview').classList.add('hidden');
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function editProduct(product) {
+            document.getElementById('modalTitle').textContent = 'Edit Product';
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productDescription').value = product.description;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productStock').value = product.stock;
+            document.getElementById('productCategory').value = product.category;
+            document.getElementById('productImage').value = product.image;
+            
+            // Show current image preview
+            if (product.image) {
+                const imagePath = product.image.startsWith('http') ? product.image : '../images/' + product.image;
+                document.getElementById('previewImg').src = imagePath;
+                document.getElementById('imagePreview').classList.remove('hidden');
+            }
+            
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('imagePreview').classList.add('hidden');
+        }
+
+        document.getElementById('productForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const token = localStorage.getItem('token');
+            const productId = document.getElementById('productId').value;
+            const action = productId ? 'update_product' : 'add_product';
+            
+            // Handle image upload
+            const imageFile = document.getElementById('productImageFile').files[0];
+            let imageName = document.getElementById('productImage').value;
+            
+            if (imageFile) {
+                // Upload image to images folder
+                const formDataImage = new FormData();
+                formDataImage.append('image', imageFile);
+                
+                try {
+                    // Copy file to images directory (you'll need to handle this server-side)
+                    // For now, we'll just use the filename
+                    imageName = imageFile.name;
+                    
+                    // You can add actual file upload logic here
+                    console.log('Image selected:', imageName);
+                } catch (error) {
+                    console.error('Image upload error:', error);
+                }
+            }
+            
+            const formData = new URLSearchParams();
+            formData.append('token', token);
+            if (productId) formData.append('id', productId);
+            formData.append('name', document.getElementById('productName').value);
+            formData.append('description', document.getElementById('productDescription').value);
+            formData.append('price', document.getElementById('productPrice').value);
+            formData.append('stock', document.getElementById('productStock').value);
+            formData.append('category', document.getElementById('productCategory').value);
+            formData.append('image', imageName);
+            
+            try {
+                const response = await fetch(`/cgi-bin/api.sh?action=${action}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert(productId ? 'Product updated! Please manually copy the image to the frontend/images/ folder.' : 'Product added! Please manually copy the image to the frontend/images/ folder.');
+                    closeProductModal();
+                    loadProducts();
+                    loadDashboardStats();
+                } else {
+                    alert(data.error || 'Operation failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Operation failed');
+            }
+        });
+
+        async function deleteProduct(productId) {
+            if (!confirm('Delete this product?')) return;
+            
+            const token = localStorage.getItem('token');
+            const formData = new URLSearchParams();
+            formData.append('token', token);
+            formData.append('id', productId);
+            
+            try {
+                const response = await fetch('/cgi-bin/api.sh?action=delete_product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Product deleted!');
+                    loadProducts();
+                    loadDashboardStats();
+                } else {
+                    alert(data.error || 'Delete failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function loadOrders() {
+            const token = localStorage.getItem('token');
+            
+            try {
+                const response = await fetch(`/cgi-bin/api.sh?action=orders&token=${token}`);
+                const data = await response.json();
+                
+                if (data.success && data.orders) {
+                    displayOrders(data.orders);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function displayOrders(orders) {
+            const container = document.getElementById('ordersList');
+            container.innerHTML = `
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Order ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        ${orders.map(o => `
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#${o.id}</td>
+                                <td class="px-6 py-4 text-sm text-gray-900">${o.username || 'N/A'}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">$${o.total_price.toFixed(2)}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold ${
+                                        o.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                                        o.status === 'processing' ? 'bg-blue-100 text-blue-800' :
+                                        o.status === 'shipped' ? 'bg-purple-100 text-purple-800' :
+                                        'bg-green-100 text-green-800'
+                                    }">${o.status}</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${new Date(o.created_at).toLocaleDateString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        async function loadCustomers() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`/cgi-bin/api.sh?action=get_users`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                
+                if (data.success && data.users) {
+                    displayCustomers(data.users);
+                } else {
+                    document.getElementById('customersList').innerHTML = '<p class="text-gray-600">No customers found</p>';
+                }
+            } catch (error) {
+                console.error('Error loading customers:', error);
+                document.getElementById('customersList').innerHTML = '<p class="text-red-600">Error loading customers</p>';
+            }
+        }
+
+        function displayCustomers(users) {
+            const container = document.getElementById('customersList');
+            
+            const customerUsers = users.filter(u => u.role === 'customer');
+            const adminUsers = users.filter(u => u.role === 'admin');
+            
+            container.innerHTML = `
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-users text-purple-600 mr-2"></i>
+                        Customer Accounts (${customerUsers.length})
+                    </h3>
+                    <div class="bg-white rounded-xl shadow overflow-hidden">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gradient-to-r from-purple-100 to-pink-100">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-700 uppercase tracking-wider">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-700 uppercase tracking-wider">Username</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-700 uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-700 uppercase tracking-wider">Full Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-700 uppercase tracking-wider">Phone</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-700 uppercase tracking-wider">Registered</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                ${customerUsers.map(user => `
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${user.id}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${user.username}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${user.email || 'N/A'}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${user.full_name || 'N/A'}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${user.phone || 'N/A'}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${new Date(user.created_at).toLocaleDateString()}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-user-shield text-amber-600 mr-2"></i>
+                        Admin Accounts (${adminUsers.length})
+                    </h3>
+                    <div class="bg-white rounded-xl shadow overflow-hidden">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gradient-to-r from-amber-100 to-orange-100">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-amber-700 uppercase tracking-wider">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-amber-700 uppercase tracking-wider">Username</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-amber-700 uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-amber-700 uppercase tracking-wider">Full Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-amber-700 uppercase tracking-wider">Role</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-amber-700 uppercase tracking-wider">Registered</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                ${adminUsers.map(user => `
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${user.id}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">${user.username}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${user.email || 'N/A'}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${user.full_name || 'N/A'}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-amber-100 text-amber-800">
+                                                Admin
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${new Date(user.created_at).toLocaleDateString()}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border-2 border-purple-200">
+                    <h4 class="font-semibold text-gray-800 mb-3"><i class="fas fa-chart-pie text-purple-600 mr-2"></i>User Statistics</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white rounded-lg p-4 shadow">
+                            <p class="text-gray-600 text-sm">Total Customers</p>
+                            <p class="text-3xl font-bold text-purple-600">${customerUsers.length}</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow">
+                            <p class="text-gray-600 text-sm">Total Admins</p>
+                            <p class="text-3xl font-bold text-amber-600">${adminUsers.length}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = '../index.html';
+        }
+    </script>
+</body>
+</html>

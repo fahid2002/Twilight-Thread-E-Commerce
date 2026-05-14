@@ -1,0 +1,85 @@
+[2025-12-14 10:59:57] User 5 added product 30 to cart (qty: 1)
+[2025-12-14 11:00:15] User 5 removed product 30 from cart
+[2025-12-14 11:00:25] User 5 removed product 28 from cart
+[2025-12-14 11:15:29] User logged out with token: wUMCIocTep...
+[2025-12-14 13:05:11] User logged in: fahid123 (ID: 5, Role: customer)
+[2025-12-14 13:05:17] User logged in: fahid123 (ID: 5, Role: customer)
+[2025-12-14 13:17:38] User logged out with token: Uq7y7SSO59...
+[2025-12-14 13:17:50] User logged in: admin (ID: 1, Role: admin)
+[2025-12-14 13:18:49] User 1 added product 6 to cart (qty: 1)
+[2025-12-14 13:19:11] Product deleted by admin: ID 12
+[2025-12-14 13:19:14] Product deleted by admin: ID 11
+[2025-12-14 13:19:27] Product deleted by admin: ID 3
+[2025-12-14 13:19:30] Product deleted by admin: ID 1
+[2025-12-14 13:19:40] Product deleted by admin: ID 4
+[2025-12-14 13:19:43] Product deleted by admin: ID 6
+[2025-12-14 13:19:51] Product deleted by admin: ID 7
+[2025-12-14 13:19:56] Product deleted by admin: ID 2
+[2025-12-14 13:20:00] Product deleted by admin: ID 22
+[2025-12-14 13:20:06] Product deleted by admin: ID 20
+[2025-12-14 13:20:11] Product deleted by admin: ID 18
+[2025-12-14 13:20:17] Product deleted by admin: ID 19
+[2025-12-14 13:20:24] Product deleted by admin: ID 17
+[2025-12-14 13:20:47] Product deleted by admin: ID 27
+[2025-12-14 13:20:56] Product deleted by admin: ID 30
+[2025-12-14 13:20:58] Product deleted by admin: ID 13
+[2025-12-14 13:21:04] Product deleted by admin: ID 32
+[2025-12-14 13:21:23] Product deleted by admin: ID 28
+[2025-12-14 13:22:02] Product deleted by admin: ID 14
+[2025-12-14 13:22:13] Product deleted by admin: ID 21
+[2025-12-14 13:22:24] Product deleted by admin: ID 16
+[2025-12-14 13:22:35] Product deleted by admin: ID 23
+[2025-12-14 13:22:39] Product deleted by admin: ID 15
+[2025-12-14 13:22:49] Product deleted by admin: ID 24
+[2025-12-14 13:22:52] Product deleted by admin: ID 5
+[2025-12-14 13:23:03] Product deleted by admin: ID 8
+[2025-12-14 13:23:08] Product deleted by admin: ID 9
+[2025-12-14 13:23:19] Product deleted by admin: ID 10
+[2025-12-14 13:27:50] Product added by admin: Yellow Rose (ID: 0)
+[2025-12-14 13:27:53] Product added by admin: Yellow Rose (ID: 0)
+[2025-12-14 13:27:57] Product added by admin: Yellow Rose (ID: 0)
+[2025-12-14 13:28:00] Product added by admin: Yellow Rose (ID: 0)
+[2025-12-14 13:28:13] Product deleted by admin: ID 35
+[2025-12-14 13:28:27] Product deleted by admin: ID 36
+[2025-12-14 13:28:36] Product deleted by admin: ID 37
+[2025-12-14 13:29:15] Product updated by admin: ID 38
+[2025-12-14 13:30:00] Product updated by admin: ID 38
+[2025-12-14 13:30:56] Product updated by admin: ID 38
+[2025-12-14 13:32:32] Product updated by admin: ID 38
+[2025-12-14 13:33:06] Product updated by admin: ID 38
+[2025-12-14 13:33:10] Product updated by admin: ID 38
+[2025-12-14 13:33:45] Product updated by admin: ID 38
+[2025-12-14 13:34:21] Product updated by admin: ID 38
+[2025-12-14 13:35:55] Product updated by admin: ID 38
+[2025-12-14 13:45:48] Product added by admin: Yellow Rose (ID: 0)
+[2025-12-14 13:46:06] Product deleted by admin: ID 38
+[2025-12-14 13:46:23] User 1 added product 39 to cart (qty: 1)
+[2025-12-14 13:55:18] Product added by admin: White Rose (ID: 0)
+[2025-12-14 13:57:20] Product added by admin: Tortoise (ID: 0)
+[2025-12-14 13:58:33] Product added by admin: Red mat (ID: 0)
+[2025-12-14 13:59:30] Product added by admin: sky  (ID: 0)
+[2025-12-14 14:01:38] Product added by admin: strawberry (ID: 0)
+[2025-12-14 14:03:15] Product added by admin: Red Rose (ID: 0)
+[2025-12-14 14:03:18] Product added by admin: Red Rose (ID: 0)
+[2025-12-14 14:04:43] Product added by admin: Purple mat (ID: 0)
+[2025-12-14 14:06:07] Product added by admin: white yellow Combo (ID: 0)
+[2025-12-14 14:07:00] Product added by admin: Moon (ID: 0)
+[2025-12-14 14:08:31] Product added by admin: ITO (ID: 0)
+[2025-12-14 14:13:17] Product added by admin: Beg (ID: 0)
+[2025-12-14 14:14:48] User 1 added product 47 to cart (qty: 1)
+[2025-12-14 14:14:57] User 1 updated cart item 47 (qty: 2)
+[2025-12-14 14:14:59] User 1 updated cart item 47 (qty: 2)
+[2025-12-14 14:15:01] User 1 updated cart item 47 (qty: 2)
+[2025-12-14 14:18:31] Product added by admin: Small  (ID: 0)
+[2025-12-14 14:19:38] Product added by admin: Pink key (ID: 0)
+[2025-12-14 14:20:47] Product added by admin: Sun Flower (ID: 0)
+[2025-12-14 14:22:30] Product added by admin: Butterfly (ID: 0)
+[2025-12-14 14:24:47] Product added by admin: Red Butterfly (ID: 0)
+[2025-12-14 14:25:38] Product added by admin: Ring Combo (ID: 0)
+[2025-12-14 14:27:37] Product added by admin: Red white (ID: 0)
+[2025-12-14 14:27:40] Product added by admin: Red white (ID: 0)
+[2025-12-14 14:29:55] Product added by admin: Side Beg (ID: 0)
+[2025-12-14 14:32:34] Product added by admin: HEART (ID: 0)
+[2025-12-14 14:33:46] Product added by admin: combo mat (ID: 0)
+[2025-12-14 14:36:08] Product added by admin: Zahid (ID: 0)
+[2025-12-14 14:37:25] Product added by admin: Three (ID: 0)

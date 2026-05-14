@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Twilight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-gem text-purple-600 text-3xl mr-3"></i>
+                    <span class="text-3xl font-bold text-gray-800">Twilight</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Checkout</h1>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center">
+                    <div class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold">1</div>
+                    <span class="ml-2 text-purple-600 font-medium">Shipping</span>
+                </div>
+                <div class="h-1 w-16 bg-gray-300"></div>
+                <div class="flex items-center">
+                    <div class="bg-gray-300 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold">2</div>
+                    <span class="ml-2 text-gray-400 font-medium">Payment</span>
+                </div>
+                <div class="h-1 w-16 bg-gray-300"></div>
+                <div class="flex items-center">
+                    <div class="bg-gray-300 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold">3</div>
+                    <span class="ml-2 text-gray-400 font-medium">Confirmation</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2">
+                <form id="checkoutForm" class="space-y-6">
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Shipping Information</h2>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Full Name</label>
+                                <input type="text" id="fullName" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                                <input type="tel" id="phone" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <label class="block text-gray-700 font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        
+                        <div class="mt-4">
+                            <label class="block text-gray-700 font-medium mb-2">Shipping Address</label>
+                            <textarea id="address" required rows="3"
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                      placeholder="Street address, City, State, ZIP Code"></textarea>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-4 mt-4">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">City</label>
+                                <input type="text" id="city" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">State</label>
+                                <input type="text" id="state" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">ZIP Code</label>
+                                <input type="text" id="zip" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Payment Method</h2>
+                        
+                        <div class="space-y-3">
+                            <label class="flex items-center p-4 border-2 border-purple-600 bg-purple-50 rounded-lg cursor-pointer">
+                                <input type="radio" name="payment" value="cod" checked class="mr-3">
+                                <div class="flex-1">
+                                    <span class="font-semibold text-gray-800">Cash on Delivery</span>
+                                    <p class="text-sm text-gray-600">Pay when you receive your order</p>
+                                </div>
+                                <i class="fas fa-money-bill-wave text-2xl text-purple-600"></i>
+                            </label>
+                            
+                            <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-300">
+                                <input type="radio" name="payment" value="card" class="mr-3">
+                                <div class="flex-1">
+                                    <span class="font-semibold text-gray-800">Credit/Debit Card</span>
+                                    <p class="text-sm text-gray-600">Coming soon</p>
+                                </div>
+                                <i class="fas fa-credit-card text-2xl text-gray-400"></i>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" 
+                            class="w-full bg-purple-600 text-white py-4 rounded-full font-semibold text-lg hover:bg-purple-700 transition">
+                        Place Order
+                    </button>
+                </form>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-4">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Order Summary</h2>
+                    
+                    <div id="orderItems" class="space-y-4 mb-6 max-h-96 overflow-y-auto">
+                        <!-- Items will be loaded here -->
+                    </div>
+                    
+                    <div class="border-t pt-4 space-y-3">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Shipping</span>
+                            <span class="text-green-600 font-semibold">FREE</span>
+                        </div>
+                        <div class="border-t pt-3 flex justify-between text-xl font-bold text-gray-800">
+                            <span>Total</span>
+                            <span id="total">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            loadOrderSummary();
+            prefillUserData();
+        });
+
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        function prefillUserData() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            if (user.full_name) document.getElementById('fullName').value = user.full_name;
+            if (user.email) document.getElementById('email').value = user.email;
+            if (user.phone) document.getElementById('phone').value = user.phone;
+        }
+
+        async function loadOrderSummary() {
+            const token = localStorage.getItem('token');
+            
+            try {
+                const response = await fetch(`/cgi-bin/api.sh?action=cart_handler&token=${token}&action=view`);
+                const data = await response.json();
+                
+                if (data.success && data.cart.length > 0) {
+                    displayOrderSummary(data.cart, data.total);
+                } else {
+                    alert('Your cart is empty');
+                    window.location.href = 'products.html';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function displayOrderSummary(items, total) {
+            const container = document.getElementById('orderItems');
+            container.innerHTML = items.map(item => `
+                <div class="flex items-center space-x-3">
+                    <img src="images/${item.image}" alt="${item.name}" 
+                         class="w-16 h-16 object-cover rounded-lg"
+                         onerror="this.src='https://via.placeholder.com/64'">
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-800 text-sm">${item.name}</h4>
+                        <p class="text-gray-600 text-xs">Qty: ${item.quantity}</p>
+                    </div>
+                    <span class="font-bold text-purple-600">$${item.subtotal.toFixed(2)}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('subtotal').textContent = `$${total.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const address = `${document.getElementById('address').value}, ${document.getElementById('city').value}, ${document.getElementById('state').value} ${document.getElementById('zip').value}`;
+            const token = localStorage.getItem('token');
+            
+            const formData = new URLSearchParams();
+            formData.append('token', token);
+            formData.append('shipping_address', address);
+            
+            try {
+                const response = await fetch('/cgi-bin/api.sh?action=checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert(`Order placed successfully! Order ID: ${data.order_id}\nTotal: $${data.total.toFixed(2)}`);
+                    localStorage.removeItem('cartCount');
+                    window.location.href = 'index.html';
+                } else {
+                    alert(data.error || 'Checkout failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Checkout failed. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
