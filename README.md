@@ -8,12 +8,6 @@
 
 Built with HTML, Tailwind CSS, JavaScript, Bash, and SQLite
 
----
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Bash](https://img.shields.io/badge/Bash-4.0+-green.svg)](https://www.gnu.org/software/bash/)
-[![SQLite](https://img.shields.io/badge/SQLite-3.0+-blue.svg)](https://www.sqlite.org/)
-
 </div>
 
 ## 📋 Table of Contents
